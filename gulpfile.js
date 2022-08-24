@@ -3,9 +3,4 @@ function defaultTask(cb) {
 	cb();
 }
 
-exports.default = defaultTaskfunction defaultTask(cb) {
-	// place code for your default task here
-	cb();
-}
-
-exports.default = defaultTask
+exports.default = defaultTask;
