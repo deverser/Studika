@@ -9,7 +9,10 @@ const rename       = require("gulp-rename");
 // Compile sass into CSS & auto-inject into browsers
 function styles() {
     return gulp.src("src/scss/*.+(sass|scss)")
-        .pipe(sass())
+        .pipe(sass({outputStyle: compact}).on('error', sass.logError))
+		.pipe(autoprefixer({cascade: false}))
+		.pipe(cleanCSS({compatibility: 'ie8'}))
+		.pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest("src/css"))
         .pipe(browserSync.stream());
 }
@@ -22,6 +25,10 @@ function server(styles) {
     });
     	gulp.watch("src/scss/*.+(sass|scss)", styles());
     	gulp.watch("src/*.html").on('change', browserSync.reload);
+}
+
+function build() {
+
 }
 
 
