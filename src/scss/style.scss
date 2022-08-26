@@ -1,2 +1,19 @@
 @import 'base/variables';
 @import 'base/fonts';
+
+.container {
+	position: relative;
+	max-width: 1216px;
+	margin: 0 auto;
+}
+
+@import 'blocks/header';
+@import 'blocks/promo';
+@import 'blocks/main_info';
+@import 'blocks/sidebar';
+@import 'blocks/graph';
+@import 'blocks/speciality';
+@import 'blocks/about';
+@import 'blocks/tags';
+@import 'blocks/buttons';
+@import 'blocks/title';
