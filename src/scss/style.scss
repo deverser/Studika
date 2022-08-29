@@ -1,12 +1,6 @@
 @import 'base/variables';
 @import 'base/fonts';
 
-.container {
-	position: relative;
-	max-width: 1216px;
-	margin: 0 auto;
-}
-
 @import 'blocks/header';
 @import 'blocks/tags';
 @import 'blocks/buttons';
