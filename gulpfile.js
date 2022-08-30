@@ -8,7 +8,7 @@ const rename       = require("gulp-rename");
 
 // Compile sass into CSS & auto-inject into browsers
 function styles() {
-    return gulp.src("src/scss/*.+(sass|scss)")
+    return gulp.src("src/scss/**/*.+(sass|scss)")
         .pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({cascade: false}))
 		.pipe(cleanCSS({compatibility: 'ie8'}))
@@ -18,7 +18,7 @@ function styles() {
 }
 
 function trace() {
-	gulp.watch("src/scss/*.+(sass|scss)", gulp.parallel(styles));
+	gulp.watch("src/scss/**/*.+(sass|scss)", gulp.parallel(styles));
 }
 
 // Static Server + watching scss/html files
