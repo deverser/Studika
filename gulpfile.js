@@ -6,20 +6,41 @@ const autoprefixer = require('gulp-autoprefixer');
 const rename       = require("gulp-rename");
 
 
+//Path to project HTML, Sass, CSS and JS files
+const path = {
+	sass: "src/scss/**/*.+(sass|scss)",
+	css: "src/css",
+	html: "src/*.html",
+	js_src: "src/js/script.js",
+	js_dist: "dist/js/"
+};
+
 // Compile sass into CSS & auto-inject into browsers
 function styles() {
-    return gulp.src("src/scss/**/*.+(sass|scss)")
+    return gulp.src(path.sass)
         .pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({cascade: false}))
 		.pipe(cleanCSS({compatibility: 'ie8'}))
 		.pipe(rename({suffix:'.min'}))
-        .pipe(gulp.dest("src/css"))
+        .pipe(gulp.dest(path.css))
         .pipe(browserSync.stream());
 }
 
+//Function for tracing changes in sass/scss files
 function trace() {
-	gulp.watch("src/scss/**/*.+(sass|scss)", gulp.parallel(styles));
+	gulp.watch(path.sass, gulp.parallel(styles));
 }
+
+// function scripts() {
+//   return src(path.js_src)
+//   .pipe(
+//     includeFiles({
+//       includePaths: './src/components/**/',
+//     })
+//   )
+//   .pipe(dest(path.js_dist))
+//   .pipe(browserSync.stream());
+// }
 
 // Static Server + watching scss/html files
 function server() {
@@ -27,10 +48,10 @@ function server() {
     browserSync.init({
         server: "src"
     });
-    	gulp.watch("src/*.html").on('change', browserSync.reload);
+    	gulp.watch(path.html).on('change', browserSync.reload);
 }
 
 
-//exports.styles = styles;
 exports.default = gulp.parallel(server, styles ,trace);
-//gulp.task(gulp.series('default', 'server'));
+exports.trace = trace;
+exports.server = server;
