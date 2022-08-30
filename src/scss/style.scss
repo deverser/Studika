@@ -1,6 +1,11 @@
 @import 'base/variables';
 @import 'base/fonts';
 
+body {
+	margin: 0;
+	background: #F1F1F1;
+}
+
 @import 'blocks/header';
 @import 'blocks/tags';
 @import 'blocks/buttons';
